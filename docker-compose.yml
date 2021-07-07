@@ -33,6 +33,7 @@ services:
 
   rcon:
     image: itzg/rcon
+    container_name: rcon
     environment:
       RWA_USERNAME: admin
       RWA_PASSWORD: admin
