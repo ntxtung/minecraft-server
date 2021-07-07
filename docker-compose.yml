@@ -1,0 +1,46 @@
+version: "3.8"
+
+services: 
+  minecraft-server:
+    image: itzg/minecraft-server:java8
+    container_name: minecraft
+    ports:
+      - "25565:25565"
+    volumes: 
+      - ./data:/data
+    environment:
+      EULA: "TRUE"
+      TYPE: "FORGE"
+      VERSION: "1.16.5"
+      FORGEVERSION: "36.1.32"
+      ONLINE_MODE: "FALSE"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "Admin@123"
+      RCON_PORT: 28016
+      
+      CFG_DB_HOST: "http://localhost:3306"
+      CFG_DB_NAME: "minecraft"
+      CFG_DB_PASSWORD_FILE: "/run/secrets/db_password"
+
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+
+  rcon:
+    image: itzg/rcon
+    environment:
+      RWA_USERNAME: admin
+      RWA_PASSWORD: admin
+      RWA_ADMIN: "TRUE"
+      # is referring to the hostname of 'mc' compose service below
+      RWA_RCON_HOST: "minecraft-server"
+      # needs to match the password configured for the container, which is 'minecraft' by default
+      RWA_RCON_PASSWORD: Admin@123
+    ports:
+      - 4326:4326
+      - 4327:4327
+
+volumes: 
+  mc:
+  rcon:
+
