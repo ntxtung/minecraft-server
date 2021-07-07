@@ -10,20 +10,24 @@ services:
       - ./data:/data
     environment:
       EULA: "TRUE"
+
       TYPE: "FORGE"
       VERSION: "1.16.5"
       FORGEVERSION: "36.1.32"
       ONLINE_MODE: "FALSE"
+
+      SERVER_NAME: "TNSV"
+      DIFFICULTY: "normal"
+      PVP: "TRUE"
+      
+
       ENABLE_RCON: "true"
       RCON_PASSWORD: "Admin@123"
-      RCON_PORT: 28016
-      
-      # CFG_DB_HOST: "http://localhost:3306"
-      # CFG_DB_NAME: "minecraft"
-      # CFG_DB_PASSWORD_FILE: "/run/secrets/db_password"
+      RCON_PORT: 25575
 
-    tty: true
-    stdin_open: true
+      ENABLE_QUERY: "TRUE"
+      QUERY_PORT: "25565"
+      
     restart: unless-stopped
 
   rcon:
