@@ -12,15 +12,14 @@ services:
       EULA: "TRUE"
       REPLACE_ENV_VARIABLES: "TRUE"
 
-      TYPE: "FORGE"
-      VERSION: "1.16.5"
-      FORGEVERSION: "36.1.32"
+      VERSION: "1.17.1"
       ONLINE_MODE: "FALSE"
 
       SERVER_NAME: "TNSV"
       DIFFICULTY: "normal"
       PVP: "TRUE"
-      
+      OPS: "ntxtung"
+      MOTD: "Hello world!"
 
       ENABLE_RCON: "true"
       RCON_PASSWORD: "Admin@123"
