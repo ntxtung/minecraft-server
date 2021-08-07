@@ -2,7 +2,7 @@ version: "3.8"
 
 services: 
   minecraft-server:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:latest
     container_name: minecraft
     ports:
       - "25565:25565"
