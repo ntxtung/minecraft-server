@@ -1,6 +1,15 @@
 version: "3.8"
 
 services: 
+  rcon:
+    container_name: rcon
+    image: itzg/rcon:latest
+    restart: unless-stopped
+    environment:
+      RWA_RCON_HOST: "minecraft-server"
+      RWA_PASSWORD: "Admin@123"
+
+
   minecraft-server:
     image: itzg/minecraft-server:latest
     
@@ -46,6 +55,8 @@ services:
       ALLOW_NETHER: "TRUE"
       ENABLE_COMMAND_BLOCK: "TRUE"
       SPAWN_PROTECTION: 0
+      ALLOW_FLIGHT: "TRUE"
+
 
       
     restart: unless-stopped
