@@ -30,7 +30,6 @@ services:
     
     volumes: 
       - ./minecraft-data:/data
-    
     healthcheck:
       test: mc-health
       start_period: 1m
@@ -39,7 +38,6 @@ services:
     
     environment:
       EULA: "TRUE"
-      REPLACE_ENV_VARIABLES: "TRUE"
       TYPE: "FORGE"
       VERSION: "1.19.2"
       ONLINE_MODE: "FALSE"
@@ -47,7 +45,6 @@ services:
       SERVER_NAME: "FServer"
 
       PVP: "TRUE"
-      OPS: "${OPS}"
       MOTD: "Welcome!"
       ENABLE_QUERY: "TRUE"
       QUERY_PORT: "25565"
