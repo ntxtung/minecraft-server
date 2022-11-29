@@ -5,19 +5,28 @@ services:
     container_name: rcon
     image: itzg/rcon:latest
     restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "4326:4326"
+      - "4327:4327"
+    volumes:
+      - ./rcon-data:/opt/rcon-web-admin/db
     environment:
-      RWA_RCON_HOST: "minecraft-server"
-      RWA_PASSWORD: "Admin@123"
+      RWA_RCON_HOST: minecraft
+      RWA_RCON_PASSWORD: minecraft
+      RWA_USERNAME: admin
+      RWA_PASSWORD: admin
+      RWA_ADMIN: "TRUE"
 
 
-  minecraft-server:
+  minecraft:
     image: itzg/minecraft-server:latest
-    
+    env_file:
+      - .env
     container_name: minecraft
-    
     ports:
       - "25565:25565"
-      - "25575:25575"
     
     volumes: 
       - ./minecraft-data:/data
@@ -37,15 +46,9 @@ services:
       DIFFICULTY: "normal"
       SERVER_NAME: "FServer"
 
-
       PVP: "TRUE"
-      OPS: "ntxtung"
+      OPS: "${OPS}"
       MOTD: "Welcome!"
-
-      ENABLE_RCON: "TRUE"
-      RCON_PASSWORD: "Admin@123"
-      RCON_PORT: 25575
-
       ENABLE_QUERY: "TRUE"
       QUERY_PORT: "25565"
 
@@ -56,8 +59,5 @@ services:
       ENABLE_COMMAND_BLOCK: "TRUE"
       SPAWN_PROTECTION: 0
       ALLOW_FLIGHT: "TRUE"
-
-
       
     restart: unless-stopped
-
